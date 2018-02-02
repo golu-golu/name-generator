@@ -20,6 +20,8 @@ def apply_to_zeros(lst, dtype=np.int64):
 def convert_data(array):
     convert = []
     for i in range(len(array)):
-        convert.append([ord(c) for c in array[i]])
-    array =  np.asarray(convert)
+        convert.append([ord(c.lower()) for c in array[i]])
+    array =  np.asarray(convert).astype(np.float32)
     return apply_to_zeros(array)
+
+print(convert_data(data(10)))

@@ -77,7 +77,7 @@ def sample_Z(m, n):
 sess = tf.Session()
 m = []
 i = []
-for it in range(100):
+for it in range(1000):
     sess.run(tf.global_variables_initializer())
     X_mb = data
     _, D_loss_curr = sess.run([D_solver, D_loss], feed_dict={
@@ -89,6 +89,8 @@ for it in range(100):
         print('Iter-{}; Convergence measure: {:.4}'.format(it, measure))
         m.append(measure)
         i.append(it)
+        samples = sess.run(G_sample, feed_dict={Z: sample_Z(1, data.shape[1])})
+        print((samples))
         ''' plt.plot(it)
         plt.pause(0.05) '''
     #print(D_loss_curr,G_loss_curr)
